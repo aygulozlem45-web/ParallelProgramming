@@ -19,8 +19,9 @@ def custom_equation(x: int=0, y: int=0, /, a: int=1, b: int=1, *, c: int=1) -> f
     """
     return (x**a + y **b) / c
 
-_count = 0
 def fn_w_counter() -> (int, dict[str, int]):
-    global _count
-    _count += 1
-    return _count, {__name__: _count} 
+    if not hasattr(fn_w_counter, "count"):
+        fn_w_counter.count = 0
+    
+    fn_w_counter.count += 1
+    return fn_w_counter.count, {__name__: fn_w_counter.count} 
